@@ -1,0 +1,93 @@
+site_name: Learn Spezi
+site_description: Comprehensive tutorial for the Stanford Spezi framework - an open-source framework for rapid development of modern, interoperable digital health applications
+site_url: https://learnspezi.com
+site_author: Spezi Tutorial Team
+repo_url: https://github.com/StanfordSpezi/Spezi
+edit_uri: edit/main/docs/
+
+theme:
+  name: material
+  logo: assets/logo.png
+  favicon: assets/favicon.ico
+  palette:
+    - scheme: default
+      primary: custom-stanford-red
+      accent: custom-oak-brown
+      toggle:
+        icon: material/weather-night
+        name: Switch to dark mode
+      # Custom Stanford colors
+      colors:
+        custom-stanford-red: '#8C1515'
+        custom-oak-brown: '#4D2E0B'
+        custom-black: '#2E2D29'
+        custom-white: '#FFFFFF'
+    - scheme: slate
+      primary: custom-stanford-red
+      accent: custom-oak-brown
+      toggle:
+        icon: material/weather-sunny
+        name: Switch to light mode
+      colors:
+        custom-stanford-red: '#8C1515'
+        custom-oak-brown: '#4D2E0B'
+        custom-black: '#2E2D29'
+        custom-white: '#FFFFFF'
+  features:
+    - navigation.tabs
+    - navigation.sections
+    - navigation.expand
+    - navigation.top
+    - search.suggest
+    - search.highlight
+    - content.code.copy
+    - content.code.annotate
+
+extra_css:
+  - stylesheets/extra.css
+
+extra_javascript:
+  - javascripts/extra.js
+
+markdown_extensions:
+  - admonition
+  - codehilite
+  - pymdownx.details
+  - pymdownx.superfences
+  - pymdownx.tabbed
+  - pymdownx.tasklist:
+      custom_checkbox: true
+  - pymdownx.highlight:
+      anchor_linenums: true
+  - pymdownx.inlinehilite
+  - pymdownx.snippets:
+      check_paths: true
+  - pymdownx.arithmatex:
+      generic: true
+  - attr_list
+  - md_in_html
+  - toc:
+      permalink: true
+
+plugins:
+  - search
+
+nav:
+  - Home: index.md
+  - Getting Started:
+    - Quick Start: getting-started/quick-start.md
+  - Core Concepts:
+    - Overview: core-concepts/overview.md
+  - Modules:
+    - Overview: modules/overview.md
+    - Core Modules: modules/core-modules.md
+    - Health & Wellness: modules/health-wellness.md
+    - User Experience: modules/user-experience.md
+    - Advanced Modules: modules/advanced-modules.md
+  - Building Modules:
+    - Overview: building-modules/overview.md
+    - Advanced Modules: building-modules/advanced-modules.md
+  - Advanced Topics:
+    - Overview: advanced/overview.md
+  - FAQ & Troubleshooting:
+    - Overview: faq/overview.md
