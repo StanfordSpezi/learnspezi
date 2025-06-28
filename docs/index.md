@@ -6,6 +6,10 @@
     ---
     Get up and running with Spezi in minutes. Learn how to create your first Spezi application.
 
+-   📚 **Tutorials**
+    ---
+    Step-by-step guides to build real-world Spezi applications. From basic setup to advanced features.
+
 -   📖 **Core Concepts**
     ---
     Understand the fundamental building blocks of Spezi: Standards, Modules, and the ecosystem.
@@ -62,7 +66,7 @@
 
 ## Getting Started 🚀
 
-The best way to learn Spezi is by doing. Start with our [Quick Start Guide](getting-started/quick-start.md) to create your first Spezi application in minutes.
+The best way to learn Spezi is by doing. Start with our [Tutorials](tutorials/overview.md) to build real-world Spezi applications, or jump into the [Quick Start Guide](getting-started/quick-start.md) for a quick overview.
 
 ### Prerequisites
 

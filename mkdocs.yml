@@ -84,6 +84,13 @@ nav:
     - Health & Wellness: modules/health-wellness.md
     - User Experience: modules/user-experience.md
     - Advanced Modules: modules/advanced-modules.md
+  - Tutorials:
+    - Overview: tutorials/overview.md
+    - Template Application Setup: tutorials/template-application-setup.md
+    - Health Tracking App: tutorials/health-tracking-app.md
+    - Research Study App: tutorials/research-study-app.md
+    - Enterprise Security: tutorials/enterprise-security.md
+    - Machine Learning Integration: tutorials/ml-integration.md
   - Building Modules:
     - Overview: building-modules/overview.md
     - Advanced Modules: building-modules/advanced-modules.md
