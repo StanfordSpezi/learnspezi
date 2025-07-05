@@ -1,6 +1,6 @@
-# Learn Spezi - Comprehensive Tutorial Website 🏥
+# Learn Spezi
 
-A comprehensive tutorial website for learning the [Stanford Spezi framework](https://spezi.stanford.edu) - an open-source framework for rapid development of modern, interoperable digital health applications.
+A comprehensive tutorial website to help beginners learn how to use [Stanford Spezi](https://spezi.stanford.edu) to build digital health apps.
 
 ## 🚀 Development Quick Start
 
