@@ -2,7 +2,7 @@ site_name: Learn Spezi
 site_description: Comprehensive tutorial website for the Stanford Spezi framework - an open-source framework for rapid development of modern, interoperable digital health applications
 site_url: https://learnspezi.com
 site_author: Stanford Biodesign Digital Health
-repo_url: https://github.com/StanfordSpezi/SpeziTemplateApplication
+repo_url: https://github.com/StanfordSpezi/Spezi
 edit_uri: edit/main/docs/
 
 theme:

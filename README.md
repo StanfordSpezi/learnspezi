@@ -12,7 +12,7 @@ A comprehensive tutorial website to help beginners learn how to use [Stanford Sp
 
 1. **Clone the repository:**
 ```bash
-git clone https://github.com/yourusername/learnspezi.git
+git clone https://github.com/StanfordSpezi/learnspezi/learnspezi.git
 cd learnspezi
 ```
 
