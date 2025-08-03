@@ -1,34 +1,22 @@
-# Welcome to Learn Spezi 🏥
+# Learn to Build Digital Health Apps with Spezi
 
 <div class="grid cards" markdown>
 
--   🚀 **Quick Start**
+-   🚀 **[Getting Started](getting-started/quick-start.md)**
     ---
-    Get up and running with Spezi in minutes. Learn how to create your first Spezi application.
-
--   📚 **Tutorials**
-    ---
-    Step-by-step guides to build real-world Spezi applications. From basic setup to advanced features.
-
--   📖 **Core Concepts**
+    Get up and running with Spezi and learn how to create your first Spezi application.
+-   📖 **[Core Concepts](core-concepts/overview.md)**
     ---
     Understand the fundamental building blocks of Spezi: Standards, Modules, and the ecosystem.
 
--   💻 **Modules Guide**
+-   💻 **[Modules](modules/overview.md)**
     ---
     Explore the rich ecosystem of Spezi modules and learn how to use them in your applications.
 
--   🛠️ **Building Modules**
+-   📚 **[Tutorials](tutorials/overview.md)**
     ---
-    Learn how to create your own Spezi modules and contribute to the ecosystem.
+    Step-by-step guides to build real-world Spezi applications. From basic setup to advanced features.
 
--   🎓 **Advanced Topics**
-    ---
-    Dive deep into advanced Spezi concepts and best practices.
-
--   ❓ **FAQ & Troubleshooting**
-    ---
-    Find answers to common questions and solutions to typical issues.
 
 </div>
 
@@ -36,57 +24,18 @@
 
 ## What is Spezi? 🤔
 
-**Spezi** is an open-source framework for rapid development of modern, interoperable digital health applications. Developed at Stanford University, Spezi introduces a standards-based modular approach to building digital health applications that are:
+**Spezi** is an open-source Swift framework for rapid development of modern, interoperable digital health applications. Developed by Stanford's Biodesign Digital Health team, Spezi introduces a standards-based modular approach to building digital health applications with two primary building blocks:
 
-- **Modular**: Built with reusable components that can be mixed and matched
-- **Interoperable**: Follows healthcare standards for data exchange
-- **Secure**: Designed with privacy and security in mind
-- **Scalable**: Can grow from simple prototypes to production applications
-
-### Key Features
-
-| Feature | Description |
-|---------|-------------|
-| **Modular Architecture** | Build applications using pre-built modules for common functionality |
-| **SwiftUI Integration** | Native SwiftUI support with beautiful, accessible UI components |
-| **HealthKit Integration** | Seamless integration with Apple's HealthKit framework |
-| **FHIR Support** | Built-in support for healthcare data standards |
-| **Bluetooth Connectivity** | Easy integration with health devices and sensors |
-| **Local LLM Support** | Run AI models locally for privacy-preserving applications |
-
-### Why Choose Spezi?
-
-- **Rapid Development**: Get from idea to prototype in days, not months
-- **Standards Compliance**: Built-in support for healthcare standards
-- **Active Community**: Join a growing community of developers and researchers
-- **Research Ready**: Designed specifically for digital health research
-- **Production Ready**: Scale from research to commercial applications
+- **Standards**: Coordinate data flow and define application-wide requirements
+- **Modules**: Provide reusable, distinct functionality with inter-module communication
+- **Modular Architecture**: Components can be mixed, matched, and extended
 
 ---
 
 ## Getting Started 🚀
 
-The best way to learn Spezi is by doing. Start with our [Tutorials](tutorials/overview.md) to build real-world Spezi applications, or jump into the [Quick Start Guide](getting-started/quick-start.md) for a quick overview.
+ Begin with our [Tutorials](tutorials/overview.md) to build real-world Spezi applications, or jump into the [Quick Start Guide](getting-started/quick-start.md) for a quick overview.
 
-### Prerequisites
-
-- macOS 13.0 or later
-- Xcode 15.0 or later
-- iOS 16.0+ target (for iOS apps)
-- Basic knowledge of Swift and SwiftUI
-
-### What You'll Build
-
-Throughout this tutorial, you'll build a complete digital health application that includes:
-
-- User onboarding and consent management
-- Health data collection and visualization
-- Questionnaire administration
-- Bluetooth device integration
-- Local notifications and scheduling
-- User account management
-
----
 
 ## Community & Support 💬
 

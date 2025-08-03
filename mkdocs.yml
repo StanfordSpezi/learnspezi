@@ -10,29 +10,24 @@ theme:
   logo: assets/logo.png
   favicon: assets/favicon.ico
   palette:
-    - scheme: default
-      primary: custom-stanford-red
-      accent: custom-oak-brown
+    - media: "(prefers-color-scheme)"
       toggle:
-        icon: material/weather-night
-        name: Switch to dark mode
-      # Custom Stanford colors
-      colors:
-        custom-stanford-red: '#8C1515'
-        custom-oak-brown: '#4D2E0B'
-        custom-black: '#2E2D29'
-        custom-white: '#FFFFFF'
-    - scheme: slate
-      primary: custom-stanford-red
-      accent: custom-oak-brown
-      toggle:
-        icon: material/weather-sunny
+        icon: material/link
         name: Switch to light mode
-      colors:
-        custom-stanford-red: '#8C1515'
-        custom-oak-brown: '#4D2E0B'
-        custom-black: '#2E2D29'
-        custom-white: '#FFFFFF'
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      primary: indigo
+      accent: indigo
+      toggle:
+        icon: material/toggle-switch
+        name: Switch to dark mode
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: black
+      accent: indigo
+      toggle:
+        icon: material/toggle-switch-off
+        name: Switch to system preference
   features:
     - navigation.tabs
     - navigation.sections
@@ -43,11 +38,15 @@ theme:
     - content.code.copy
     - content.code.annotate
 
-extra_css:
-  - stylesheets/extra.css
-
 extra_javascript:
   - javascripts/extra.js
+
+extra:
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/StanfordSpezi
+    - icon: fontawesome/brands/x-twitter
+      link: https://twitter.com/StanfordSpezi
 
 markdown_extensions:
   - admonition
@@ -71,6 +70,7 @@ markdown_extensions:
 
 plugins:
   - search
+  - git-authors
 
 nav:
   - Home: index.md
@@ -86,15 +86,3 @@ nav:
     - Advanced Modules: modules/advanced-modules.md
   - Tutorials:
     - Overview: tutorials/overview.md
-    - Template Application Setup: tutorials/template-application-setup.md
-    - Health Tracking App: tutorials/health-tracking-app.md
-    - Research Study App: tutorials/research-study-app.md
-    - Enterprise Security: tutorials/enterprise-security.md
-    - Machine Learning Integration: tutorials/ml-integration.md
-  - Building Modules:
-    - Overview: building-modules/overview.md
-    - Advanced Modules: building-modules/advanced-modules.md
-  - Advanced Topics:
-    - Overview: advanced/overview.md
-  - FAQ & Troubleshooting:
-    - Overview: faq/overview.md
