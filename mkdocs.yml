@@ -3,7 +3,6 @@ site_description: Comprehensive tutorial website for the Stanford Spezi framewor
 site_url: https://learnspezi.com
 site_author: Stanford Biodesign Digital Health
 repo_url: https://github.com/StanfordSpezi/Spezi
-edit_uri: edit/main/docs/
 
 theme:
   name: material
@@ -81,8 +80,6 @@ nav:
   - Modules:
     - Overview: modules/overview.md
     - Core Modules: modules/core-modules.md
-    - Health & Wellness: modules/health-wellness.md
     - User Experience: modules/user-experience.md
-    - Advanced Modules: modules/advanced-modules.md
   - Tutorials:
     - Overview: tutorials/overview.md

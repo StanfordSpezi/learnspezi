@@ -193,22 +193,10 @@ Spezi modules fall into several categories based on their functionality:
 - **SpeziViews**: Common UI components
 - **SpeziValidation**: Data validation utilities
 
-### Health & Wellness
-- **SpeziHealthKit**: HealthKit integration
-- **SpeziBluetooth**: Bluetooth device connectivity
-- **SpeziDevices**: Health device management
-
 ### User Experience
 - **SpeziOnboarding**: User onboarding flows
 - **SpeziAccount**: User account management
 - **SpeziQuestionnaire**: Survey and questionnaire tools
-
-### Advanced Features
-- **SpeziLLM**: Local AI/ML capabilities
-- **SpeziFHIR**: Healthcare data standards
-- **SpeziScheduler**: Task scheduling and notifications
-- **SpeziFirestore**: Firebase cloud storage integration
-- **SpeziFirebaseAccount**: Firebase-based user authentication
 
 ## Best Practices
 
