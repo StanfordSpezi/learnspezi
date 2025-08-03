@@ -18,6 +18,10 @@
     ---
     Explore the rich ecosystem of Spezi modules and learn how to use them in your applications.
 
+-   ❓ **[FAQ & Troubleshooting](faq/overview.md)**
+    ---
+    Find answers to common questions and solutions to typical issues.
+
 </div>
 
 ---

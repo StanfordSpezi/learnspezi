@@ -10,29 +10,24 @@ theme:
   logo: assets/logo.png
   favicon: assets/favicon.ico
   palette:
-    - scheme: default
-      primary: custom-stanford-red
-      accent: custom-oak-brown
+    - media: "(prefers-color-scheme)"
       toggle:
-        icon: material/weather-night
-        name: Switch to dark mode
-      # Custom Stanford colors
-      colors:
-        custom-stanford-red: '#8C1515'
-        custom-oak-brown: '#4D2E0B'
-        custom-black: '#2E2D29'
-        custom-white: '#FFFFFF'
-    - scheme: slate
-      primary: custom-stanford-red
-      accent: custom-oak-brown
-      toggle:
-        icon: material/weather-sunny
+        icon: material/link
         name: Switch to light mode
-      colors:
-        custom-stanford-red: '#8C1515'
-        custom-oak-brown: '#4D2E0B'
-        custom-black: '#2E2D29'
-        custom-white: '#FFFFFF'
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      primary: indigo
+      accent: indigo
+      toggle:
+        icon: material/toggle-switch
+        name: Switch to dark mode
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: black
+      accent: indigo
+      toggle:
+        icon: material/toggle-switch-off
+        name: Switch to system preference
   features:
     - navigation.tabs
     - navigation.sections
@@ -71,6 +66,7 @@ markdown_extensions:
 
 plugins:
   - search
+  - git-authors
 
 nav:
   - Home: index.md

@@ -6,7 +6,6 @@ A comprehensive tutorial website to help beginners learn how to use [Stanford Sp
 
 ### Prerequisites
 - Python 3.8 or later
-- pip (Python package installer)
 
 ### Installation
 
@@ -37,28 +36,6 @@ mkdocs build
 
 This creates a `site/` directory with the static website files ready for deployment.
 
-## 📖 Tutorial Structure
-
-```
-docs/
-├── index.md                    # Homepage with overview
-├── getting-started/
-│   └── quick-start.md         # First Spezi application
-├── core-concepts/
-│   └── overview.md            # Fundamental concepts
-├── modules/
-│   └── overview.md            # Module ecosystem guide
-├── building-modules/
-│   └── overview.md            # Custom module development
-├── advanced/
-│   └── overview.md            # Advanced topics
-├── faq/
-│   └── overview.md            # FAQ and troubleshooting
-├── stylesheets/
-│   └── extra.css              # Custom styles
-└── javascripts/
-    └── extra.js               # Interactive features
-```
 
 ## Contributing
 
