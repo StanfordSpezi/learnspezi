@@ -39,15 +39,6 @@ The foundation of the Spezi ecosystem.
 - Data flow coordination
 - Constraint system
 
-**Usage:**
-```swift
-import Spezi
-
-class MyStandard: Standard, ObservableObject {
-    // Your standard implementation
-}
-```
-
 ### SpeziViews
 Common UI components and utilities.
 
@@ -58,22 +49,6 @@ Common UI components and utilities.
 - Form validation
 - Accessibility helpers
 - Design system components
-
-**Usage:**
-```swift
-import SpeziViews
-
-struct MyView: View {
-    var body: some View {
-        VStack {
-            // Use SpeziViews components
-            SpeziButton("Submit") {
-                // Action
-            }
-        }
-    }
-}
-```
 
 ## Health & Wellness Modules
 
@@ -88,18 +63,6 @@ HealthKit integration for health data access.
 - Data type abstractions
 - Privacy-compliant data handling
 
-**Usage:**
-```swift
-import SpeziHealthKit
-
-// Request HealthKit permissions
-HealthKitPermissionView()
-
-// Read health data
-let healthStore = HealthKitStore()
-let steps = try await healthStore.readSteps(for: Date())
-```
-
 ### SpeziBluetooth
 Bluetooth device connectivity and communication.
 
@@ -111,25 +74,8 @@ Bluetooth device connectivity and communication.
 - Data streaming
 - Device-specific protocols
 
-**Usage:**
-```swift
-import SpeziBluetooth
-
-class BluetoothManager: ObservableObject {
-    @Published var discoveredDevices: [BluetoothDevice] = []
-    
-    func startScanning() {
-        // Scan for Bluetooth devices
-    }
-    
-    func connect(to device: BluetoothDevice) {
-        // Connect to device
-    }
-}
-```
-
 ### SpeziDevices
-Health device management and integration.
+Abstracts common interactions with Bluetooth Devices that are implemented using SpeziBluetooth.
 
 **Package**: `https://github.com/StanfordSpezi/SpeziDevices`
 
@@ -152,31 +98,6 @@ User onboarding and consent management.
 - Permission requests
 - Progress tracking
 
-**Usage:**
-```swift
-import SpeziOnboarding
-
-struct OnboardingView: View {
-    var body: some View {
-        OnboardingFlow {
-            WelcomeStep {
-                WelcomeStepView(
-                    title: "Welcome",
-                    subtitle: "Get started with your health journey"
-                )
-            }
-            
-            ConsentStep {
-                ConsentView(
-                    title: "Research Consent",
-                    description: "Your data will be used for research..."
-                )
-            }
-        }
-    }
-}
-```
-
 ### SpeziAccount
 User account management and authentication.
 
@@ -188,17 +109,6 @@ User account management and authentication.
 - Authentication state
 - Secure data storage
 
-**Usage:**
-```swift
-import SpeziAccount
-
-struct AccountView: View {
-    var body: some View {
-        AccountSetupView()
-    }
-}
-```
-
 ### SpeziQuestionnaire
 Survey and questionnaire administration.
 
@@ -209,19 +119,6 @@ Survey and questionnaire administration.
 - Custom questionnaire creation
 - Response collection
 - Data export
-
-**Usage:**
-```swift
-import SpeziQuestionnaire
-
-struct QuestionnaireView: View {
-    var body: some View {
-        QuestionnaireView(
-            questionnaire: myQuestionnaire
-        )
-    }
-}
-```
 
 ## Advanced Modules
 
@@ -235,19 +132,6 @@ Local AI/ML capabilities for privacy-preserving applications.
 - Chat interfaces
 - Model management
 - Privacy-preserving AI
-
-**Usage:**
-```swift
-import SpeziLLM
-
-struct ChatView: View {
-    @StateObject private var chatModel = LocalChatModel()
-    
-    var body: some View {
-        ChatView(chatModel: chatModel)
-    }
-}
-```
 
 ### SpeziScheduler
 Task scheduling and notification management.
@@ -271,64 +155,6 @@ Healthcare data standards support.
 - Standard compliance
 - Data validation
 
-## Module Integration Patterns
-
-### 1. Basic Module Setup
-```swift
-class MyAppStandard: Standard, ObservableObject {
-    init() {
-        // Add essential modules
-        add(OnboardingModule())
-        add(AccountModule())
-        add(HealthKitModule())
-    }
-}
-```
-
-### 2. Conditional Module Loading
-```swift
-class MyAppStandard: Standard, ObservableObject {
-    init(configuration: AppConfiguration) {
-        // Always add core modules
-        add(OnboardingModule())
-        add(AccountModule())
-        
-        // Add optional modules based on configuration
-        if configuration.enableHealthKit {
-            add(HealthKitModule())
-        }
-        
-        if configuration.enableBluetooth {
-            add(BluetoothModule())
-        }
-        
-        if configuration.enableAI {
-            add(LLMModule())
-        }
-    }
-}
-```
-
-### 3. Module Configuration
-```swift
-class MyAppStandard: Standard, ObservableObject {
-    init() {
-        // Configure modules with specific settings
-        let onboardingConfig = OnboardingConfiguration(
-            steps: [.welcome, .consent, .permissions],
-            allowSkip: false
-        )
-        add(OnboardingModule(configuration: onboardingConfig))
-        
-        let healthConfig = HealthKitConfiguration(
-            dataTypes: [.steps, .heartRate, .sleep],
-            readOnly: true
-        )
-        add(HealthKitModule(configuration: healthConfig))
-    }
-}
-```
-
 ## Module Dependencies
 
 Some modules depend on others. Here's a typical dependency chain:
@@ -344,35 +170,6 @@ Spezi (Core)
 └── SpeziQuestionnaire
     └── SpeziViews
 ```
-
-## Best Practices
-
-### 1. Module Selection
-- Start with core modules for basic functionality
-- Add health modules based on your app's needs
-- Include UX modules for better user experience
-- Consider advanced modules for specialized features
-
-### 2. Performance Considerations
-- Load modules only when needed
-- Use lazy loading for heavy modules
-- Monitor memory usage with multiple modules
-- Test module combinations thoroughly
-
-### 3. User Experience
-- Ensure smooth transitions between modules
-- Maintain consistent UI/UX across modules
-- Handle module errors gracefully
-- Provide clear feedback for module operations
-
-## Module Development
-
-Want to create your own modules? Check out the [Building Modules](building-modules/overview.md) guide to learn how to:
-
-- Create custom modules
-- Define module requirements
-- Handle module communication
-- Publish modules to the ecosystem
 
 ## Getting Help
 

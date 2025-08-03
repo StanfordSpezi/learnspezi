@@ -10,17 +10,17 @@ At its heart, Spezi follows a **modular architecture** where applications are bu
 ┌─────────────────────────────────────────────────────────────┐
 │                    Spezi Application                        │
 ├─────────────────────────────────────────────────────────────┤
-│  ┌─────────────┐  ┌─────────────┐  ┌─────────────┐         │
-│  │   Module A  │  │   Module B  │  │   Module C  │         │
-│  │             │  │             │  │             │         │
-│  └─────────────┘  └─────────────┘  └─────────────┘         │
-│         │                │                │                │
-│         └────────────────┼────────────────┘                │
-│                          │                                 │
-│  ┌─────────────────────────────────────────────────────┐   │
-│  │                    Standard                         │   │
-│  │              (Central Coordinator)                  │   │
-│  └─────────────────────────────────────────────────────┘   │
+│  ┌─────────────┐  ┌─────────────┐  ┌─────────────┐          │
+│  │   Module A  │  │   Module B  │  │   Module C  │          │
+│  │             │  │             │  │             │          │
+│  └─────────────┘  └─────────────┘  └─────────────┘          │
+│         │                │                │                 │
+│         └────────────────┼────────────────┘                 │
+│                          │                                  │
+│  ┌─────────────────────────────────────────────────────┐    │
+│  │                    Standard                         │    │
+│  │              (Central Coordinator)                  │    │
+│  └─────────────────────────────────────────────────────┘    │
 └─────────────────────────────────────────────────────────────┘
 ```
 
@@ -28,33 +28,29 @@ At its heart, Spezi follows a **modular architecture** where applications are bu
 
 ### 1. Standard 📋
 
-A **Standard** is the central coordinator that orchestrates data flow and communication between modules in your application.
-
-**Key Responsibilities:**
-- Manages module lifecycle
-- Coordinates data flow between modules
-- Enforces module requirements and constraints
-- Provides shared application state
+A **Standard** is the central coordinator that orchestrates data flow and communication between modules in your application. In Spezi, Standards are implemented as Swift actors to ensure thread-safe operation.
 
 **Example Standard:**
 ```swift
-class MySpeziStandard: Standard, ObservableObject {
-    @Published var isOnboardingComplete = false
-    @Published var currentUser: User?
+actor TemplateApplicationStandard: Standard, 
+    HealthKitConstraint, 
+    OnboardingConstraint,
+    AccountNotifyConstraint {
     
-    init() {
-        // Configure modules and their requirements
+    // Handle cross-module data flow and business logic
+    func add(sample: HKSample) async {
+        // Process and store health data
     }
     
-    func configure() {
-        // Set up module dependencies and constraints
+    func deletedAccount() async throws {
+        // Handle account deletion across modules
     }
 }
 ```
 
 ### 2. Module 🧩
 
-A **Module** is a self-contained software component that provides specific functionality. Modules can be mixed and matched to build different applications.
+A **Module** is a self-contained software component that provides specific functionality. Spezi modules can be mixed and matched to build different applications.
 
 **Module Characteristics:**
 - **Reusable**: Can be used across different applications
@@ -64,38 +60,67 @@ A **Module** is a self-contained software component that provides specific funct
 
 **Example Module Usage:**
 ```swift
-// HealthKit Module provides health data access
 import SpeziHealthKit
-
-// Onboarding Module handles user onboarding
 import SpeziOnboarding
-
-// Account Module manages user accounts
 import SpeziAccount
+import SpeziFirebaseAccount
+import SpeziFirestore
+import SpeziQuestionnaire
+import SpeziScheduler
+import SpeziNotifications
+
+// Configure modules in your app delegate
+configure {
+    if !FeatureFlags.disableFirebase {
+        FirebaseConfiguration()
+        Firestore(settings: .emulator)
+        FirebaseAccountConfiguration()
+    }
+    
+    if HKHealthStore.isHealthDataAvailable() {
+        HealthKit {
+            CollectSamples(\.stepCount, deliverySetting: .background(.afterAuthorizationAndApplicationWillLaunch))
+        }
+    }
+    
+    AccountConfiguration(configuration: [
+        .requires(\.userId),
+        .supports(\.name)
+    ])
+    
+    OnboardingDataSource()
+    TemplateApplicationScheduler()
+    NotificationHandler()
+}
 ```
 
 ### 3. Constraint System 🔒
 
-The **Constraint System** allows modules to specify requirements that must be met by the Standard or other modules.
+The **Constraint System** allows modules to specify requirements that must be met by the Standard or other modules through protocol conformance.
 
 **Types of Constraints:**
-- **Requirements**: What a module needs to function
-- **Dependencies**: Other modules that must be present
-- **Permissions**: System permissions required
-- **Data Types**: Specific data formats needed
+- **Protocol Constraints**: Standards must conform to specific protocols
+- **Data Handling**: Define how modules interact with shared data
+- **Lifecycle Events**: Handle module events and notifications
+- **Permission Requirements**: Specify system permissions needed
 
 **Example Constraints:**
 ```swift
-// Module requires HealthKit access
-@Requirement(HealthKitPermission.self)
-class HealthDataModule: Module {
-    // Module implementation
-}
-
-// Module requires user authentication
-@Requirement(UserAccount.self)
-class SecureDataModule: Module {
-    // Module implementation
+// Standard conforms to constraints to handle module interactions
+actor TemplateApplicationStandard: Standard, 
+    HealthKitConstraint,           // Handle HealthKit data
+    OnboardingConstraint,          // Manage onboarding state
+    AccountNotifyConstraint {      // Handle account events
+    
+    // HealthKitConstraint implementation
+    func add(sample: HKSample) async {
+        // Store health sample to Firestore
+    }
+    
+    // AccountNotifyConstraint implementation  
+    func deletedAccount() async throws {
+        // Clean up user data across modules
+    }
 }
 ```
 
@@ -103,52 +128,76 @@ class SecureDataModule: Module {
 
 ### 1. Module Communication
 
-Modules communicate through the Standard using a publish-subscribe pattern:
+Modules communicate through the Standard using dependency injection and constraint protocols. The Standard acts as a central coordinator that implements constraint protocols to handle cross-module interactions:
 
 ```swift
-// Module A publishes data
-spezi.publish(HealthData(steps: 10000))
-
-// Module B subscribes to data
-spezi.subscribe(to: HealthData.self) { data in
-    // Handle health data updates
+// HealthKit module sends data to Standard
+actor TemplateApplicationStandard: HealthKitConstraint {
+    func add(sample: HKSample) async {
+        // Process health sample
+        let processedData = await processHealthSample(sample)
+        
+        // Store in Firestore if configured
+        if let firestore = modules.get(Firestore.self) {
+            await firestore.store(processedData)
+        }
+    }
 }
 ```
 
 ### 2. State Management
 
-The Standard manages shared application state:
+Application state is managed through individual modules and SwiftUI's state management system, with the Standard coordinating data flow between modules:
 
 ```swift
-class MySpeziStandard: Standard, ObservableObject {
-    @Published var userProfile: UserProfile?
-    @Published var healthData: [HealthData] = []
-    @Published var isAuthenticated = false
+// State is managed at the app level using SwiftUI
+@main
+struct TemplateApplication: App {
+    @AppStorage(StorageKeys.onboardingFlowComplete) 
+    var completedOnboardingFlow = false
     
-    // Modules can observe and update this state
+    @State private var accountSetup = false
+    
+    var body: some Scene {
+        WindowGroup {
+            if completedOnboardingFlow {
+                HomeView()
+            } else {
+                OnboardingFlow { 
+                    completedOnboardingFlow = true 
+                }
+            }
+        }
+        .spezi(AppDelegate())
+    }
 }
 ```
 
 ### 3. Lifecycle Management
 
-Modules have well-defined lifecycle events:
+Modules are configured through the Spezi configuration system and integrate with app lifecycle events:
 
 ```swift
-class MyModule: Module {
-    func configure() {
-        // Called when module is first configured
-    }
-    
-    func willLaunch() {
-        // Called before app launches
-    }
-    
-    func didLaunch() {
-        // Called after app launches
-    }
-    
-    func willTerminate() {
-        // Called before app terminates
+class TemplateApplicationDelegate: SpeziAppDelegate {
+    override var configuration: Configuration {
+        Configuration(standard: TemplateApplicationStandard()) {
+            // Configure modules during app initialization
+            if !FeatureFlags.disableFirebase {
+                FirebaseConfiguration()
+                Firestore(settings: .emulator)
+            }
+            
+            AccountConfiguration(configuration: [
+                .requires(\.userId),
+                .supports(\.name)
+            ])
+            
+            if HKHealthStore.isHealthDataAvailable() {
+                HealthKit {
+                    CollectSamples(\.stepCount, deliverySetting: .background(.afterAuthorizationAndApplicationWillLaunch))
+                }
+            }
+        }
     }
 }
 ```
@@ -176,6 +225,8 @@ Spezi modules fall into several categories based on their functionality:
 - **SpeziLLM**: Local AI/ML capabilities
 - **SpeziFHIR**: Healthcare data standards
 - **SpeziScheduler**: Task scheduling and notifications
+- **SpeziFirestore**: Firebase cloud storage integration
+- **SpeziFirebaseAccount**: Firebase-based user authentication
 
 ## Best Practices
 
@@ -201,16 +252,32 @@ Spezi modules fall into several categories based on their functionality:
 
 ### 1. Module Composition
 ```swift
-class MyAppStandard: Standard {
-    init() {
-        // Add essential modules
-        add(OnboardingModule())
-        add(AccountModule())
-        add(HealthKitModule())
-        
-        // Add optional modules based on configuration
-        if enableQuestionnaires {
-            add(QuestionnaireModule())
+class TemplateApplicationDelegate: SpeziAppDelegate {
+    override var configuration: Configuration {
+        Configuration(standard: TemplateApplicationStandard()) {
+            // Essential modules
+            OnboardingDataSource()
+            AccountConfiguration(configuration: [
+                .requires(\.userId),
+                .supports(\.name)
+            ])
+            
+            // Conditional module loading
+            if !FeatureFlags.disableFirebase {
+                FirebaseConfiguration()
+                Firestore(settings: .production)
+                FirebaseAccountConfiguration()
+            }
+            
+            // Feature-specific modules
+            if HKHealthStore.isHealthDataAvailable() {
+                HealthKit {
+                    CollectSamples(\.stepCount, deliverySetting: .background(.afterAuthorizationAndApplicationWillLaunch))
+                }
+            }
+            
+            TemplateApplicationScheduler()
+            NotificationHandler()
         }
     }
 }
@@ -218,30 +285,52 @@ class MyAppStandard: Standard {
 
 ### 2. Data Sharing
 ```swift
-// Define shared data types
-struct UserProfile: Codable {
-    let id: String
-    let name: String
-    let email: String
+// Data sharing happens through the Standard's constraint implementations
+actor TemplateApplicationStandard: Standard, 
+    HealthKitConstraint, 
+    AccountNotifyConstraint {
+    
+    // HealthKit data flows through the Standard
+    func add(sample: HKSample) async {
+        // Process and store health sample
+        guard let firestore = modules.get(Firestore.self) else { return }
+        
+        // Store in user's Firestore collection
+        let document = firestore.collection("users")
+            .document(userId)
+            .collection("HealthSamples")
+            .document()
+            
+        try? await document.setData(from: sample)
+    }
+    
+    // Account events trigger data cleanup
+    func deletedAccount() async throws {
+        // Clean up user data across all modules
+        try await cleanupUserData()
+    }
 }
-
-// Modules can publish and subscribe to this data
-spezi.publish(UserProfile(id: "123", name: "John", email: "john@example.com"))
 ```
 
 ### 3. Error Handling
 ```swift
-class MyModule: Module {
-    func handleError(_ error: Error) {
-        // Handle module-specific errors
-        switch error {
-        case HealthKitError.notAuthorized:
-            // Request HealthKit permissions
-        case NetworkError.connectionFailed:
-            // Retry network request
-        default:
-            // Log and report error
+// Error handling in Spezi follows Swift's async/await error handling patterns
+actor TemplateApplicationStandard: Standard, AccountNotifyConstraint {
+    func deletedAccount() async throws {
+        do {
+            // Attempt to clean up user data
+            try await cleanupFirestoreData()
+            try await cleanupHealthKitData()
+        } catch {
+            // Log error and potentially retry
+            print("Failed to cleanup user data: \(error)")
+            throw error
         }
+    }
+    
+    private func cleanupFirestoreData() async throws {
+        guard let firestore = modules.get(Firestore.self) else { return }
+        // Perform cleanup operations
     }
 }
 ```
@@ -250,9 +339,8 @@ class MyModule: Module {
 
 Now that you understand the core concepts, explore:
 
-- **[Modules Guide](modules/overview.md)**: Learn about specific Spezi modules
-- **[Building Modules](building-modules/overview.md)**: Create your own modules
-- **[Advanced Topics](advanced/overview.md)**: Master advanced Spezi features
+- **[Modules Guide](../modules/overview.md)**: Learn about specific Spezi modules
+- **[Tutorials](../tutorials/overview.md)**: Build real applications with step-by-step guides
 
 ---
 
