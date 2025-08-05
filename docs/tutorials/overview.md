@@ -14,4 +14,4 @@ Found an issue or want to improve a tutorial? We welcome contributions!
 
 ---
 
-**Ready to start?** Begin with the [Template Application Setup](template-application-setup.md) tutorial to get your first Spezi app running! 
+**Ready to start?** Template Application Setup tutorial coming soon - get your first Spezi app running! 

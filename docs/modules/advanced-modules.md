@@ -364,7 +364,7 @@ struct AdvancedHealthApp: App {
 
 ## Next Steps
 
-- Learn about [Building Custom Modules](../building-modules/overview.md)
+- Learn about Building Custom Modules (coming soon)
 - Explore [Core Modules](core-modules.md)
 - Check out [Health & Wellness Modules](health-wellness.md)
 - Discover [User Experience Modules](user-experience.md) 

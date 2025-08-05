@@ -297,6 +297,6 @@ struct MyApp: App {
 ## Next Steps
 
 - Discover [Advanced Modules](advanced-modules.md)
-- Learn about [Building Custom Modules](../building-modules/overview.md)
+- Learn about Building Custom Modules (coming soon)
 - Explore [Core Modules](core-modules.md)
 - Check out [Health & Wellness Modules](health-wellness.md) 
