@@ -1,0 +1,38 @@
+name: Test MkDocs Build
+
+on:
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+    
+    - name: Setup Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: '3.13'
+    
+    - name: Install dependencies
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y pngquant libcairo2-dev libfreetype6-dev libffi-dev libjpeg-dev libpng-dev libz-dev
+        python -m pip install --upgrade pip
+        pip install -r requirements.txt
+    
+    - name: Test MkDocs build
+      run: mkdocs build --strict
+    
+    - name: Validate generated site
+      run: |
+        if [ ! -d "site" ]; then
+          echo "Error: site directory not created"
+          exit 1
+        fi
+        if [ ! -f "site/index.html" ]; then
+          echo "Error: index.html not generated"
+          exit 1
+        fi
+        echo "✅ MkDocs build successful"

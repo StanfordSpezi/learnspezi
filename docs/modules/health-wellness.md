@@ -208,5 +208,5 @@ Health and wellness modules prioritize data privacy and security:
 
 - Explore [User Experience Modules](user-experience.md)
 - Discover [Advanced Modules](advanced-modules.md)
-- Learn about [Building Custom Modules](../building-modules/overview.md)
+- Learn about Building Custom Modules (coming soon)
 - Check out [Core Modules](core-modules.md) 

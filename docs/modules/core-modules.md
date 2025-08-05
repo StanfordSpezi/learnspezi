@@ -149,4 +149,4 @@ struct MyApp: App {
 - Learn about [Health & Wellness Modules](health-wellness.md)
 - Explore [User Experience Modules](user-experience.md)
 - Discover [Advanced Modules](advanced-modules.md)
-- Start [Building Your Own Modules](../building-modules/overview.md) 
+- Start Building Your Own Modules (coming soon) 
