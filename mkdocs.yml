@@ -70,7 +70,8 @@ markdown_extensions:
 
 plugins:
   - search
-  - social
+  - social:
+      enabled: !ENV [CI, false]
   - git-authors
 
 nav:
