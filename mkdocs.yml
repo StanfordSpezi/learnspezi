@@ -75,6 +75,7 @@ plugins:
 nav:
   - Home: index.md
   - Getting Started:
+    - Development Environment: getting-started/development-environment.md
     - Quick Start: getting-started/quick-start.md
   - Core Concepts:
     - Overview: core-concepts/overview.md
