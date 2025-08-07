@@ -34,7 +34,7 @@
 
 ## Getting Started 🚀
 
- Begin with our [Tutorials](tutorials/overview.md) to build real-world Spezi applications, or jump into the [Quick Start Guide](getting-started/quick-start.md) for a quick overview.
+Jump into the [Quick Start Guide](getting-started/your-first-app.md) to get started with the Spezi Template Application.
 
 
 ## Community & Support 💬
