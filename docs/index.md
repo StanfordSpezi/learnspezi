@@ -2,7 +2,7 @@
 
 <div class="grid cards" markdown>
 
--   🚀 **[Getting Started](getting-started/quick-start.md)**
+-   🚀 **[Getting Started](getting-started/your-first-app.md)**
     ---
     Get up and running with Spezi and learn how to create your first Spezi application.
 -   📖 **[Core Concepts](core-concepts/overview.md)**

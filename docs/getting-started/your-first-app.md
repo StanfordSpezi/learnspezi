@@ -8,6 +8,7 @@ Welcome to Spezi! This guide will help you create your first Spezi application.
 ## Overview
 
 In this guide, you'll:
+
 1. Get the Spezi Template Application
 2. Open and run it in Xcode
 3. Make your first customization
