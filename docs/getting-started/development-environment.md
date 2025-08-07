@@ -64,6 +64,7 @@ You should see **Xcode 16.2** or newer.
 > **Why?** Spezi relies on helper tools to manage dependencies, simulate backends, and streamline development.
 
 The setup script installs:
+
 - **Homebrew** (package manager for macOS)
 - **Git LFS** (Large File Storage)
 - **Node.js** (JavaScript runtime)
