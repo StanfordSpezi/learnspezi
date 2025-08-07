@@ -158,7 +158,7 @@ All commands should return version numbers. If any report "command not found", r
 
 ## Next Steps
 
-You're ready to create your first Spezi app! Continue with the [Your First App](quick-start.md) guide to start building.
+You're ready to create your first Spezi app! Continue with the [Your First App](your-first-app.md) guide to start building.
 
 ## Optional: Connect to a Firebase Cloud Project
 
