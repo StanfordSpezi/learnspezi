@@ -1,4 +1,4 @@
-# Development Environment Setup
+# Environment Setup
 
 Welcome! This guide will help you prepare your Mac to build and run iOS apps using Spezi. 
 
@@ -18,7 +18,7 @@ Welcome! This guide will help you prepare your Mac to build and run iOS apps usi
 
 **Why?** Newer Xcode versions require a recent macOS release.
 
-1. Click the Apple  menu → **About This Mac**.
+1. Click the Apple  menu → **About This Mac**.
 2. Check the version number: it should be *15.2* or above.
 3. If an update is available:
    - Click **Software Update**.
@@ -83,7 +83,7 @@ The setup script installs:
 - You may be prompted for your Mac password (normal).
 - Type **y** to confirm any prompts.
 
-> 💡 **Tip:** You’ll see lots of scrolling text — that’s expected!
+> 💡 **Tip:** You'll see lots of scrolling text — that's expected!
 
 ### Verify installations
 
@@ -95,13 +95,13 @@ firebase --version
 java -version
 ```
 
-If any command reports "command not found", that tool’s install needs retry.
+If any command reports "command not found", that tool's install needs retry.
 
 ---
 
 ## Choose Your Backend
 
-> **What’s a backend?** It’s the cloud services (login, data sync) your app communicates with.
+> **What's a backend?** It's the cloud services (login, data sync) your app communicates with.
 
 Spezi supports two modes:
 
@@ -130,36 +130,35 @@ In Xcode's scheme editor (Product → Scheme → Edit Scheme → Run → Argumen
 3. `--disableFirebase`: Disable all Firebase services, including login and data upload.
 4. `--useFirebaseEmulator`: Force the app to connect to the local Firebase Emulator Suite (set to true when using a simulator).
 
-> Tip: See Apple’s guide on [specify launch arguments and environment variables](https://developer.apple.com/documentation/xcode/customizing-the-build-schemes-for-a-project#Specify-launch-arguments-and-environment-variables).
+> Tip: See Apple's guide on [specify launch arguments and environment variables](https://developer.apple.com/documentation/xcode/customizing-the-build-schemes-for-a-project#Specify-launch-arguments-and-environment-variables).
 
 ---
 
-## Test Your Setup
+## Verify Your Setup
 
-1. **Clone the Spezi template**: 
+Run these commands to confirm everything is installed correctly:
+
 ```bash
-git clone https://github.com/StanfordSpezi/SpeziTemplateApplication.git
-cd SpeziTemplateApplication
-```
-2. **Open in Xcode**:
-Double-click `TemplateApplication.xcodeproj`.
+# Check Xcode
+xcodebuild -version
 
-3. **Select a simulator**:
-In Xcode’s toolbar, choose an iPhone simulator (e.g., iPhone 16 Pro).
+# Check Homebrew
+brew --version
 
-4. **Build & run**: Click the ▶️ **Run** button.
-
-> ⚠️ If you see a build error like “Target 'SpeziAccountMacros' must be enabled before it can be used,” select the error in the Issue Navigator and click **Trust & Enable**.
-
-### Testing Option B (Local Backend)
-
-5. In the project folder, run:
-```bash
-firebase emulators:start
+# Check development tools
+git lfs version
+node --version
+firebase --version
+java -version
 ```
 
-6. Open **http://localhost:4000** in your browser for the Emulator UI.
-7. Run the app again in Xcode to test login and data features.
+All commands should return version numbers. If any report "command not found", re-run the setup script or install that tool manually.
+
+---
+
+## Next Steps
+
+You're ready to create your first Spezi app! Continue with the [Your First App](quick-start.md) guide to start building.
 
 ## Optional: Connect to a Firebase Cloud Project
 
@@ -176,7 +175,7 @@ base64 -i GoogleService-Info.plist
 
 ## Troubleshooting
 
-**Xcode won’t open or crashes**
+**Xcode won't open or crashes**
 - Restart your Mac.
 - Delete Xcode prefs: `rm ~/Library/Preferences/com.apple.dt.Xcode.plist`.
 
@@ -190,12 +189,3 @@ npm install -g firebase-tools
 ```
 
 For more help, visit the [Spezi GitHub Issues](https://github.com/StanfordSpezi/Spezi/issues).
-
----
-
-## Next Steps
-
-You’re all set! 🎉
-
-- Continue with the [Quick Start Guide](quick-start.md).
-- Explore Spezi modules and tutorials.

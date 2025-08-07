@@ -1,17 +1,17 @@
-# Quick Start Guide 🚀
+# Your First App 🚀
 
 Welcome to Spezi! This guide will help you create your first Spezi application.
 
 !!! info "Prerequisites"
-    Make sure you've completed the [Development Environment Setup](development-environment.md) before starting this guide.
+    Make sure you've completed the [Environment Setup](development-environment.md) before starting this guide.
 
 ## Overview
 
 In this guide, you'll:
-1. Download the Spezi Template Application
+1. Get the Spezi Template Application
 2. Open and run it in Xcode
 3. Make your first customization
-4. Understand the basic structure
+4. Understand the project structure
 
 ## Step 1: Get the Template Application
 
@@ -27,21 +27,20 @@ Alternatively, if you're comfortable with Git:
 git clone https://github.com/StanfordSpezi/SpeziTemplateApplication.git
 ```
 
-## Step 2: Open the Project
+## Step 2: Open and Run the Project
 
 1. Navigate to the downloaded folder
 2. Double-click the `TemplateApplication.xcodeproj` file
 3. Xcode will open with your project loaded
-
-## Step 3: Run Your First Spezi App
-
-1. In Xcode, make sure the destination is set to an iPhone simulator (like "iPhone 16 Pro")
-2. Click the **Play** button (▶️) in the top-left corner
-3. Wait for the app to build and launch
+4. In Xcode, make sure the destination is set to an iPhone simulator (like "iPhone 16 Pro")
+5. Click the **Play** button (▶️) in the top-left corner
+6. Wait for the app to build and launch
 
 🎉 **Congratulations!** You're now running your first Spezi application.
 
-## Step 4: Explore the App
+> ⚠️ If you see a build error like "Target 'SpeziAccountMacros' must be enabled before it can be used," select the error in the Issue Navigator and click **Trust & Enable**.
+
+## Step 3: Explore the App
 
 In the simulator, you'll see:
 - A welcome screen with onboarding flow
@@ -51,7 +50,7 @@ In the simulator, you'll see:
 
 Take a few minutes to click around and see what's included.
 
-## Step 5: Make Your First Change
+## Step 4: Make Your First Change
 
 Let's customize the app title:
 
