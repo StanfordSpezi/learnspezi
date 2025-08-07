@@ -77,7 +77,8 @@ plugins:
 nav:
   - Home: index.md
   - Getting Started:
-    - Quick Start: getting-started/quick-start.md
+    - Environment Setup: getting-started/development-environment.md
+    - Your First App: getting-started/your-first-app.md
   - Core Concepts:
     - Overview: core-concepts/overview.md
   - Modules:
